@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -343,7 +343,7 @@ footer {
     <!-- ===== INPUT PANEL ===== -->
     <div class="inputs-panel">
 
-      <div class="section-title">Contratto</div>
+      <div class="section-title">Provincia di lavoro</div>
 
       <div class="field full">
         <label for="selTerr">Provincia</label>
@@ -393,6 +393,8 @@ footer {
         </select>
       </div>
 
+      <div class="section-title">Livello</div>
+
       <div class="field full">
         <label for="selLiv">Livello contrattuale</label>
         <select id="selLiv">
@@ -410,16 +412,36 @@ footer {
         </select>
       </div>
 
-      <div class="section-title">Orario</div>
+      <div class="section-title">Orario di lavoro</div>
 
-      <div class="field">
+      <div class="field full">
         <label for="oreScelte">Ore settimanali</label>
-        <input type="number" id="oreScelte" value="40" min="1" max="48" step="0.5">
+        <select id="oreScelte">
+          <option value="40" selected>40 ore — Full time</option>
+          <option value="38">38 ore</option>
+          <option value="37.5">37,5 ore</option>
+          <option value="35">35 ore</option>
+          <option value="32.5">32,5 ore</option>
+          <option value="30">30 ore</option>
+          <option value="27.5">27,5 ore</option>
+          <option value="25">25 ore</option>
+          <option value="24">24 ore</option>
+          <option value="23.5">23,5 ore</option>
+          <option value="21">21 ore</option>
+          <option value="20">20 ore</option>
+          <option value="17.5">17,5 ore</option>
+          <option value="15">15 ore</option>
+        </select>
       </div>
 
       <div class="field">
         <label>Part-time</label>
         <input type="text" id="ptPerc" value="100,0%" readonly tabindex="-1" class="pt-display">
+      </div>
+
+      <div class="field">
+        <label for="festiviDom">Festivi domenicali</label>
+        <input type="number" id="festiviDom" value="1" min="0" max="52" step="1">
       </div>
 
       <!-- MENSA CHECKBOX -->
@@ -533,28 +555,38 @@ const CCNL = {"ALESSANDRIA|1°": {"tot": 2095.87, "dr": 121.08}, "ALESSANDRIA|2�
 const TERR = {"ALESSANDRIA": {"r": "Piemonte", "ec": 0.0, "ac": [0.008, 0.008, 0.011, 0.012]}, "ANCONA": {"r": "Marche", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "ASCOLI PICENO": {"r": "Marche", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "BELLUNO": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "BERGAMO": {"r": "Lombardia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "BOLOGNA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "BRESCIA": {"r": "Lombardia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "CHIETI": {"r": "Abruzzo", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "COMO": {"r": "Lombardia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "CREMONA": {"r": "Lombardia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "FERRARA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "FIRENZE": {"r": "Toscana", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "FOGGIA": {"r": "Puglia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "FORLI": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.0055, 0.0055, 0.0078, 0.0079]}, "GENOVA": {"r": "Liguria", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "LA SPEZIA": {"r": "Liguria", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "MACERATA": {"r": "Marche", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "MANTOVA": {"r": "Lombardia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "MILANO": {"r": "Lombardia", "ec": 23000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "MODENA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "MONZA BRIANZA": {"r": "Lombardia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "NAPOLI": {"r": "Campania", "ec": 12000.0, "ac": [0.009, 0.009, 0.009, 0.009]}, "NOVARA": {"r": "Piemonte", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "PADOVA": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "PARMA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "PESARO": {"r": "Marche", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "PIACENZA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "PORDENONE": {"r": "Friuli-Venezia Giulia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "POTENZA": {"r": "Basilicata", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "RAVENNA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "REGGIO EMILIA": {"r": "Emilia-Romagna", "ec": 15000.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "RIETI": {"r": "Lazio", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "ROMA": {"r": "Lazio", "ec": 14000.0, "ac": [0.009, 0.009, 0.009, 0.009]}, "ROVIGO": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "TORINO": {"r": "Piemonte", "ec": 11790.0, "ac": [0.0055, 0.008, 0.008, 0.008]}, "TRENTO": {"r": "Trentino-Alto Adige", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "TREVISO": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "UDINE": {"r": "Friuli-Venezia Giulia", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "VENEZIA": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "VERONA": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}, "VICENZA": {"r": "Veneto", "ec": 0.0, "ac": [0.008, 0.008, 0.008, 0.008]}};
 const REG  = {"Abruzzo": [0.0167, 0.0167, 0.0287, 0.0333], "Basilicata": [0.0123, 0.0123, 0.0123, 0.0123], "Campania": [0.0173, 0.0296, 0.032, 0.0333], "Emilia-Romagna": [0.0133, 0.0193, 0.0278, 0.0333], "Friuli-Venezia Giulia": [0.007, 0.0123, 0.0123, 0.0123], "Lazio": [0.0173, 0.0173, 0.0333, 0.0333], "Liguria": [0.0123, 0.0123, 0.0318, 0.0323], "Lombardia": [0.0123, 0.0158, 0.0172, 0.0173], "Marche": [0.0123, 0.0153, 0.017, 0.0173], "Piemonte": [0.0162, 0.0268, 0.0331, 0.0333], "Puglia": [0.0133, 0.0143, 0.0163, 0.0185], "Toscana": [0.0142, 0.0143, 0.0332, 0.0333], "Trentino-Alto Adige": [0.0123, 0.0123, 0.0123, 0.0173], "Veneto": [0.0123, 0.0123, 0.0123, 0.0123]};
 
+// Paga base + contingenza per livello (base enti bilaterali, identica per tutti i territori)
+const BC = {"1°":2053.87,"2°":1868.92,"3°":1757.14,"4°":1652.69,"5°":1543.86,"6/S":1480.77,"6°":1458.31,"7°":1360.34,"quadro A":2397.19,"quadro B":2212.22};
+
 const INPS = 0.097567 + 0.001 + 0.002;   // 0.100567
 
 // ===== UTILS =====
 const fmt = (n) => new Intl.NumberFormat("it-IT", {minimumFractionDigits:2, maximumFractionDigits:2}).format(n) + " €";
 
 // ===== CALC =====
-function calcola(terr, liv, oreW, oreFT, conMensa, coniuge, asc100, asc50, fig100, fig50) {
+function calcola(terr, liv, oreW, oreFT, conMensa, festivi, coniuge, asc100, asc50, fig100, fig50) {
   const key = terr + "|" + liv;
   const row = CCNL[key];
   if (!row) return null;
 
-  const prop          = oreW / oreFT;
-  const lM            = row.tot * prop;                  // lordo mensile
-  const lA            = lM * 14;                         // lordo annuo (su 14 mensilita)
-  const drA           = row.dr * prop * 14;              // delta rinnovo annuo (detassato 5%)
+  const prop         = oreW / oreFT;
+  const lM           = row.tot * prop;
+  const lA           = lM * 14;
+  const drA          = row.dr * prop * 14;
 
-  const contributiDip = lA * INPS;
-  const impFiscLordo  = lA - contributiDip;              // imponibile fiscale totale
-  const impOrd        = impFiscLordo - drA;              // imponibile IRPEF ordinario
-  const impSost5      = drA * 0.05;                      // imposta sostitutiva 5% su rinnovo
+  // Festivi domenicali (lordo giornaliero = lM / 26)
+  const festiviAnnui = (lM / 26) * festivi;
+  const lAnnuo       = lA + festiviAnnui;
 
-  // IRPEF lorda su imponibile ordinario
+  // Enti bilaterali azienda (0,20% su paga base+contingenza, confluisce in imponibile fiscale)
+  const entiAziendaA = (BC[liv] || 0) * prop * 14 * 0.002;
+
+  const contributiDip = lAnnuo * INPS;
+  const impFiscLordo  = lAnnuo - contributiDip + entiAziendaA;
+  const impOrd        = impFiscLordo - drA;
+  const impSost5      = drA * (1 - INPS) * 0.05;   // imposta sostitutiva su quota netta INPS
+
+  // IRPEF lorda
   let irpefL = 0;
   if (impOrd > 0) {
     if (impOrd <= 28000)      irpefL = impOrd * 0.23;
@@ -567,17 +599,29 @@ function calcola(terr, liv, oreW, oreFT, conMensa, coniuge, asc100, asc50, fig10
   if (impOrd > 0 && impOrd <= 15000) {
     detrLav = 1955;
   } else if (impOrd <= 28000) {
-    // Include ex-bonus Renzi trasformato in detrazione per 15001-28000
     detrLav = 1910 + 1190 * (28000 - impOrd) / 13000;
   } else if (impOrd <= 50000) {
     detrLav = Math.max(0, 1910 * (50000 - impOrd) / 22000);
   }
 
-  // Trattamento Integrativo (DL 3/2020 — credito rimborsabile per RC <= 15000)
-  let TI = 0;
-  if (impOrd > 0 && impOrd <= 15000) {
-    TI = 1200;
+  // Maggiorazione detrazione 65€ (25001-35000) e ulteriore detrazione (20001-40000)
+  const magg65  = (impOrd > 25000 && impOrd <= 35000) ? 65 : 0;
+  const ultrDet = impOrd > 20000 && impOrd <= 32000 ? 1000 :
+                  impOrd > 32000 && impOrd <= 40000  ? 1000 * (40000 - impOrd) / 8000 : 0;
+
+  // Test capienza TI (reddito test = impOrd + quota 5% netta, correttivo -75€ su detrLav)
+  const rdTest = impOrd + drA * (1 - INPS);
+  let irpefLT = 0;
+  if (rdTest > 0) {
+    if (rdTest <= 28000)      irpefLT = rdTest * 0.23;
+    else if (rdTest <= 50000) irpefLT = 28000 * 0.23 + (rdTest - 28000) * 0.33;
+    else                      irpefLT = 28000 * 0.23 + 22000 * 0.33 + (rdTest - 50000) * 0.43;
   }
+  let detrLavT = 0;
+  if (rdTest > 0 && rdTest <= 15000)      detrLavT = 1955;
+  else if (rdTest <= 28000)               detrLavT = 1910 + 1190 * (28000 - rdTest) / 13000;
+  else if (rdTest <= 50000)               detrLavT = Math.max(0, 1910 * (50000 - rdTest) / 22000);
+  const TI = (impOrd > 0 && impOrd <= 15000 && irpefLT > Math.max(0, detrLavT - 75)) ? 1200 : 0;
 
   // Detrazioni familiari (art. 12 TUIR)
   const rc = impOrd;
@@ -590,17 +634,14 @@ function calcola(terr, liv, oreW, oreFT, conMensa, coniuge, asc100, asc50, fig10
   let detrAsc = 0;
   if (asc100 > 0) detrAsc += asc100 * Math.max(0, 750 * (80000 - rc) / 80000);
   if (asc50  > 0) detrAsc += asc50  * Math.max(0, 375 * (80000 - rc) / 80000);
-
   let detrFig = 0;
   if (fig100 > 0) detrFig += fig100 * Math.max(0, 950 * (95000 - rc) / 95000);
   if (fig50  > 0) detrFig += fig50  * Math.max(0, 475 * (95000 - rc) / 95000);
 
-  const detrTot = detrLav + detrCon + detrAsc + detrFig;
+  const detrTot = detrLav + magg65 + ultrDet + detrCon + detrAsc + detrFig;
+  const irpefN  = Math.max(0, irpefL - detrTot);
 
-  // IRPEF netta
-  const irpefN = Math.max(0, irpefL - detrTot);
-
-  // Addizionale regionale (4 scaglioni: 0-15k, 15k-28k, 28k-50k, >50k)
+  // Addizionale regionale
   const td = TERR[terr];
   const rr = REG[td.r] || [0, 0, 0, 0];
   let addReg = 0;
@@ -609,10 +650,10 @@ function calcola(terr, liv, oreW, oreFT, conMensa, coniuge, asc100, asc50, fig10
     const s2 = Math.max(0, Math.min(impOrd, 28000) - 15000);
     const s3 = Math.max(0, Math.min(impOrd, 50000) - 28000);
     const s4 = Math.max(0, impOrd - 50000);
-    addReg = s1 * rr[0] + s2 * rr[1] + s3 * rr[2] + s4 * rr[3];
+    addReg = s1*rr[0] + s2*rr[1] + s3*rr[2] + s4*rr[3];
   }
 
-  // Addizionale comunale (con esenzione, poi scaglioni)
+  // Addizionale comunale
   const ec = td.ec;
   const ac = td.ac;
   let addCom = 0;
@@ -622,18 +663,18 @@ function calcola(terr, liv, oreW, oreFT, conMensa, coniuge, asc100, asc50, fig10
     const c2 = Math.max(0, Math.min(baseCom, Math.max(0, 28000 - ec)) - Math.max(0, 15000 - ec));
     const c3 = Math.max(0, Math.min(baseCom, Math.max(0, 50000 - ec)) - Math.max(0, 28000 - ec));
     const c4 = Math.max(0, baseCom - Math.max(0, 50000 - ec));
-    addCom = c1 * ac[0] + c2 * ac[1] + c3 * ac[2] + c4 * ac[3];
+    addCom = c1*ac[0] + c2*ac[1] + c3*ac[2] + c4*ac[3];
   }
 
-  // Trattenuta mensa automatica: 20gg × 11 mesi × tariffa (per ore settimanali)
+  // Mensa
   const tarifaMensa = oreW <= 15 ? 1.45 : 1.65;
   const mensaAnnua  = conMensa ? tarifaMensa * 20 * 11 : 0;
 
-  const nettoA = lA - contributiDip - irpefN - addReg - addCom - impSost5 + TI - mensaAnnua;
+  const nettoA = lAnnuo - contributiDip - irpefN - addReg - addCom - impSost5 + TI - mensaAnnua;
   const nettoM = nettoA / 14;
 
   return {
-    lM: lM, lA: lA,
+    lM: lM, lA: lAnnuo,
     nettoM: nettoM, nettoA: nettoA,
     mensaAnnua: mensaAnnua,
     tarifaMensa: tarifaMensa,
@@ -642,7 +683,7 @@ function calcola(terr, liv, oreW, oreFT, conMensa, coniuge, asc100, asc50, fig10
 }
 
 // ===== UI =====
-const ids = ["selTerr","selLiv","oreScelte","chkMensa","chkConiuge",
+const ids = ["selTerr","selLiv","oreScelte","festiviDom","chkMensa","chkConiuge",
              "asc100","asc50","fig100","fig50"];
 
 function aggiorna() {
@@ -652,6 +693,7 @@ function aggiorna() {
   const oreFT = 40;
   document.getElementById("ptPerc").value = (oreW / oreFT * 100).toFixed(1).replace(".", ",") + "%";
   const conMensa = document.getElementById("chkMensa").checked;
+  const festivi  = parseInt(document.getElementById("festiviDom").value) || 0;
   const con    = document.getElementById("chkConiuge").checked;
   const a100   = parseInt(document.getElementById("asc100").value) || 0;
   const a50    = parseInt(document.getElementById("asc50").value)  || 0;
@@ -665,7 +707,7 @@ function aggiorna() {
     ph.style.display = "flex"; rb.classList.remove("visible"); return;
   }
 
-  const r = calcola(terr, liv, oreW, oreFT, conMensa, con, a100, a50, f100, f50);
+  const r = calcola(terr, liv, oreW, oreFT, conMensa, festivi, con, a100, a50, f100, f50);
   if (!r) {
     ph.style.display = "flex"; rb.classList.remove("visible"); return;
   }
@@ -719,7 +761,7 @@ function aggiorna() {
 
 ids.forEach(id => {
   const el = document.getElementById(id);
-  const ev = el.type === "checkbox" ? "change" : "input";
+  const ev = (el.type === "checkbox" || el.tagName === "SELECT") ? "change" : "input";
   el.addEventListener(ev, aggiorna);
 });
 
