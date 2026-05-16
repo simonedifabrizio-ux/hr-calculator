@@ -1,4 +1,4 @@
-const CACHE = 'hr-calc-v2';
+const CACHE = 'hr-calc-v3';
 const FILES = [
   './hr-calculator.html',
   './manifest.json',
